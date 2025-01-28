@@ -280,3 +280,39 @@ newSquirrel.close()
 #Rename files by using OS 
 import os
 os.rename('rename.txt', 'newrename.txt')
+
+#Class
+class Employee:
+    def __init__(self, name, gender, role, salary, department):
+        self.name = name
+        self.gender = gender
+        self.role = role
+        self.salary = salary
+        #For getter and setter functions we use underscore to denote them. 
+        self._department = department
+
+    #@property is a decorator that helps modify the functions. In this case we are creating getter function
+    @property
+    def department(self):
+        print('Getter function for department...')
+        return self._department
+        
+    @department.setter
+    def department(self, value):
+        self._department = value
+    
+    def __str__(self):
+        return 'Employee name: %s, gender: %s, salary: %d, department: %s'%(self.name, self.gender, self.role, self.salary, self._department)
+    
+    #method
+    def updateSalary(self, value):
+        self.salary = value
+        print('Updated salary is {0:d}'.format(self.salary))
+
+#Initializing class and using it
+employee1 = Employee('Ram Kumar', 'M', 'Manager', 90000, 'Sales')
+print(employee1.department) #Should call getter function which returns the value of _department
+employee1.department = 'Senior Manager'
+
+print(employee1.department)
+employee1.updateSalary(100000)
