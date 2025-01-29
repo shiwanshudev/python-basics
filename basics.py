@@ -316,3 +316,53 @@ employee1.department = 'Senior Manager'
 
 print(employee1.department)
 employee1.updateSalary(100000)
+
+#Class vs Instance variables
+
+class A:
+    classVar = 10
+    def __init__(self):
+        self.instanceVar = 50
+
+a = A.classVar
+print(a)
+
+aInstance = A()
+print(aInstance.instanceVar)
+
+# classmethod staticmethod
+
+class B:
+    classNum = 20
+    def __init__(self):
+        self.num =10
+
+    @classmethod
+    def modifyClsNum(cls, val):
+        cls.classNum = val
+        print('Modified classNum to %d'%(cls.classNum))
+        # print(cls.num) ERROR when we try to print this because cls is class itself and not an instance so it can only access class variables.
+    
+    @staticmethod
+    def printHello():
+        print('No cls or self params in static methods.')
+
+
+B.modifyClsNum(25)
+B.printHello()
+
+#Inheritance
+class Student:
+    def __init__(self, name, dept):
+        self.name=name
+        self.dept=dept
+
+#Here ManagementStudent inherits from Student.
+class ManagementStudent(Student):
+    def __init__(self, name):
+        super().__init__(name, 'Management')
+    def __str__(self):
+        return 'Name: %s, Department: %s'%(self.name, self.dept)
+    
+s1 = ManagementStudent('Ram Kumar')
+print(s1)
